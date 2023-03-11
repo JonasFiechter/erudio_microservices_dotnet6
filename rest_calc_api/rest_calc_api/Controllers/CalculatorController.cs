@@ -44,13 +44,13 @@ namespace rest_calc_api.Controllers
                 return sumResult.ToString();
             }
 
-            if (operation == "multiply") 
+            else if (operation == "multiply") 
             {
                 decimal multiplyResult = firstNumber * secondNumber;
                 return multiplyResult.ToString();
             }
 
-            if (operation == "divide")
+            else if (operation == "divide")
             {
                 decimal divideResult = firstNumber / secondNumber;
                 return divideResult.ToString();
@@ -65,7 +65,13 @@ namespace rest_calc_api.Controllers
 
         private bool IsNumeric(string number)
         {
-            if (double.TryParse(number, System.Globalization.NumberStyles.Any, System.Globalization.NumberFormatInfo.InvariantInfo, out double result)) 
+            if (double.TryParse(
+                    number, 
+                    System.Globalization.NumberStyles.Any, 
+                    System.Globalization.NumberFormatInfo.InvariantInfo, 
+                    out double result
+                    )
+                );
             {
                 return true;
             };
