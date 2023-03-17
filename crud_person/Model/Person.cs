@@ -2,19 +2,24 @@ namespace crud_person.Model
 {
     public class Person
     {
-        public long Id;
-        public string FirstName;
-        public string LastName;
-        public string Address;
-        public string Gender;
+        //  public Person
+        //     (
+        //         long Id, 
+        //         string FirstName, 
+        //         string LastName,
+        //         string Address,
+        //         string Gender
+        //     )
+        // {
+        //     this.Id = Id;
 
-        public Person()
-        {
-            this.Id = Id;
-            this.FirstName = FirstName;
-            this.LastName = LastName;
-            this.Address = Address;
-            this.Gender = Gender;
-        }
+        // }
+        public long Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Address { get; set; }
+        public string Gender { get; set; }
+
+       
     }
 }

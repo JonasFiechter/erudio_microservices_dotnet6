@@ -4,8 +4,9 @@ namespace crud_person.Services.Implementations
 {
     public class PersonServiceImplementation : IPersonService
     {
-        public void Create()
+        public Person Create(Person person)
         {
+            return person;
         }
 
         public void Update()
@@ -14,26 +15,19 @@ namespace crud_person.Services.Implementations
 
         public Person FindByID(long id)
         {
-            return new Person
+            return new Person()
             {
-                Id = 1,
-                FirstName = "Lavre",
-                LastName = "Jose",
-                Address = "Some st. 122",
+                Id = id,
+                FirstName = "Mark",
+                LastName = "Mark",
+                Address = "Ham st.",
                 Gender = "Male"
             };
         }
 
-        public string FindAll()
+        public List<Person> FindAll()
         {
-            // List<Person>; persons = new List<Person>();
-
-            // for (int i = 0; i < 9; i++)
-            // {
-            //     persons.Add(person);
-            // }
-
-            return "persons";
+            throw new NotImplementedException();
         }
 
         public void Delete(long id)

@@ -1,14 +1,13 @@
 using crud_person.Model;
-using System.Collections.Generic;
 
 namespace crud_person.Services
 {
     public interface IPersonService
     {
-        void Create();
+        Person Create(Person person);
         void Update();
         Person FindByID(long id);
-        string FindAll();
+        List<Person> FindAll();
         void Delete(long id);
     }
 }

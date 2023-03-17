@@ -17,9 +17,9 @@ public class PersonController : ControllerBase
         _personService = personService;
     }
 
-    [HttpGet("oper")]
-    public IActionResult Get()
+    [HttpGet("{find}/{_id}")]
+    public IActionResult Get(long _id)
     {
-        return Ok(_personService.FindAll());
+        return Ok(_personService.FindByID(_id));
     }
 }
