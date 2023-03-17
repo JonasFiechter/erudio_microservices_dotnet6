@@ -1,7 +1,9 @@
 namespace crud_person.Model
 {
+
     public class Person
     {
+        public List<Person> persons = new List<Person>();
         //  public Person
         //     (
         //         long Id, 

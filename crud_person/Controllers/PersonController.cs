@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using crud_person.Services;
+using crud_person.Model;
 
 namespace crud_person.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api")]
 public class PersonController : ControllerBase
 {
     private readonly ILogger<PersonController> _logger;
@@ -17,9 +18,23 @@ public class PersonController : ControllerBase
         _personService = personService;
     }
 
-    [HttpGet("{find}/{_id}")]
-    public IActionResult Get(long _id)
+    [HttpPost("create")]
+    public IActionResult Post([FromBody] Person person)
     {
-        return Ok(_personService.FindByID(_id));
+        return Ok(_personService.Create(person));
+    }
+
+    [HttpGet("find/list")]
+    public IActionResult Get()
+    {
+        return Ok(_personService.FindAll());
+    }
+
+    [HttpGet("calc/{first}/{second}")]
+    public IActionResult Get(float first, float second)
+    {
+        float result = first / second;
+        var rest = first % second;
+        return Ok($"{result} - {rest}");
     }
 }
