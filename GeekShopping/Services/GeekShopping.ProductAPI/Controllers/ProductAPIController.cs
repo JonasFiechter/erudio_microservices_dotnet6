@@ -6,7 +6,6 @@ namespace GeekShopping.ProductAPIController.Controllers
     [Route("[controller]")]
     public class ProductAPIController : ControllerBase
     {
-
         private readonly ILogger<ProductAPIController> _logger;
 
         public ProductAPIController(ILogger<ProductAPIController> logger)
