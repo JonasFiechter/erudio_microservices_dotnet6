@@ -3,6 +3,7 @@ using GeekShopping.ProductAPI.Data.ValueObjects;
 using GeekShopping.ProductAPI.Model;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using System;
 
 namespace GeekShopping.ProductAPI.Repository
 {
@@ -24,10 +25,12 @@ namespace GeekShopping.ProductAPI.Repository
         }
         public async Task<ProductVO> FindById(long id)
         {
-            Product product = 
-            await _context.Products.Where(
+            
+            Product product = await _context.Products.Where(
                 p => p.Id == id
-                ).FirstOrDefaultAsync();
+                ).FirstOrDefaultAsync() ?? new Product();
+
+            Console.WriteLine($"inside FindById {product.Id}");
             return _mapper.Map<ProductVO>(product);
         }
         public async Task<ProductVO> Create(ProductVO productVO)
