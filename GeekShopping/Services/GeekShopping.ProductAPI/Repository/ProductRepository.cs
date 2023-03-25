@@ -6,12 +6,12 @@ using AutoMapper;
 
 namespace GeekShopping.ProductAPI.Repository
 {
-    class ProducRepository : IProductRepository
+    class ProductRepository : IProductRepository
     {
         private readonly MySQLContext _context;
         private IMapper _mapper;
 
-        ProducRepository(MySQLContext context, IMapper mapper)
+        public ProductRepository(MySQLContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

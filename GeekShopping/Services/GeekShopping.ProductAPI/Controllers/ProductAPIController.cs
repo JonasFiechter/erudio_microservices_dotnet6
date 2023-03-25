@@ -1,22 +1,33 @@
 using Microsoft.AspNetCore.Mvc;
+using GeekShopping.ProductAPI.Repository;
+using GeekShopping.ProductAPI.Data.ValueObjects;
 
 namespace GeekShopping.ProductAPIController.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/v1/[controller]")]
     public class ProductAPIController : ControllerBase
     {
-        private readonly ILogger<ProductAPIController> _logger;
+        private IProductRepository _repository;
 
-        public ProductAPIController(ILogger<ProductAPIController> logger)
+        public ProductAPIController(IProductRepository repository)
         {
-            _logger = logger;
+            _repository = repository ?? 
+                throw new ArgumentNullException(nameof(repository));
         }
 
-        [HttpGet("api/{param}")]
-        public IActionResult Get(string param)
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ProductVO>>> FindAll()
         {
-            return Ok("Working");
+            var product = await _repository.FindAll();
+            return Ok(product);
+        }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ProductVO>> FindById(long id)
+        {
+            var product = await _repository.FindById(id);
+            if (product.Id <= 0) return NotFound();
+            return Ok(product);
         }
     }
 }
