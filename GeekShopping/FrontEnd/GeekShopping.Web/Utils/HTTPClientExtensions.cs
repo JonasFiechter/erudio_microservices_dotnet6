@@ -1,8 +1,5 @@
-using System;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace GeekShopping.Web.Utils
 {
@@ -10,7 +7,7 @@ namespace GeekShopping.Web.Utils
     {
         private static MediaTypeHeaderValue contentType
             = new MediaTypeHeaderValue("application/json");
-        public static async Task<T> ReadContentAs<T>(
+        public static async Task<T> ReadContentAs <T>(
             this HttpResponseMessage response)
         {
             if (!response.IsSuccessStatusCode) throw
@@ -20,7 +17,7 @@ namespace GeekShopping.Web.Utils
             var dataAsString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             return JsonSerializer.Deserialize<T>(dataAsString,
                 new JsonSerializerOptions
-                {PropertyNameCaseInsensitive = true});
+                    {PropertyNameCaseInsensitive = true});
         }
 
         public static Task<HttpResponseMessage> PostAsJson<T>(
