@@ -25,33 +25,35 @@ namespace GeekShopping.ProductAPIController.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductVO>> FindById(long id)
         {
+            Console.WriteLine("Calling FindId API");
             var product = await _repository.FindById(id);
             if (product.Id <= 0) return NotFound();
             return Ok(product);
         }
-        [HttpPost("create/{vo}")]
-        public async Task<ActionResult<ProductVO>> Create([FromBody]ProductVO vo)
+        [HttpPost]
+        public async Task<ActionResult<ProductVO>> Create([FromBody] ProductVO vo)
         {
+            Console.WriteLine("Calling Create API");
             if (vo == null) return BadRequest();
             var product = await _repository.Create(vo);
             
             return Ok(product);
         }
-        [HttpPut("update/{vo}")]
-        public async Task<ActionResult<ProductVO>> Update([FromBody]ProductVO vo)
+        [HttpPut]
+        public async Task<ActionResult<ProductVO>> Update([FromBody] ProductVO vo)
         {
             if (vo == null) return BadRequest();
             var product = await _repository.Update(vo);
             
             return Ok(product);
         }
-        [HttpDelete("delete/{vo}")]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(long id)
         {
-            var product = await _repository.Delete(id);
-            Console.WriteLine(product);
-            
-            return Ok(product);
+            Console.WriteLine("Caling Delete API");
+            var status = await _repository.Delete(id);
+            if (!status) return BadRequest();
+            return Ok(status);
         }
     }
 }

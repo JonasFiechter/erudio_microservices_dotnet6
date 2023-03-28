@@ -56,6 +56,7 @@ namespace GeekShopping.ProductAPI.Repository
                 ).FirstOrDefaultAsync() ?? new Product();
                 if (product == null) return false;
                 _context.Products.Remove(product);
+                await _context.SaveChangesAsync();
                 return true;
             }
             catch (Exception)
