@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using GeekShopping.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GeekShopping.Web.Controllers;
 
